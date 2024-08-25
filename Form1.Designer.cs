@@ -42,6 +42,8 @@ namespace PswdManager
             this.test = new System.Windows.Forms.DataGridView();
             this.SearchPswd = new System.Windows.Forms.Button();
             this.deletePswd = new System.Windows.Forms.Button();
+            this.modifyPswd = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.test)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,11 +160,33 @@ namespace PswdManager
             this.deletePswd.UseVisualStyleBackColor = true;
             this.deletePswd.Click += new System.EventHandler(this.deletePswd_Click_1);
             // 
+            // modifyPswd
+            // 
+            this.modifyPswd.Location = new System.Drawing.Point(106, 164);
+            this.modifyPswd.Name = "modifyPswd";
+            this.modifyPswd.Size = new System.Drawing.Size(75, 23);
+            this.modifyPswd.TabIndex = 12;
+            this.modifyPswd.Text = "修改密码";
+            this.modifyPswd.UseVisualStyleBackColor = true;
+            this.modifyPswd.Click += new System.EventHandler(this.modifyPswd_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.Location = new System.Drawing.Point(12, 405);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(75, 23);
+            this.Exit.TabIndex = 13;
+            this.Exit.Text = "退出";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Exit);
+            this.Controls.Add(this.modifyPswd);
             this.Controls.Add(this.deletePswd);
             this.Controls.Add(this.SearchPswd);
             this.Controls.Add(this.test);
@@ -199,6 +223,8 @@ namespace PswdManager
         private System.Windows.Forms.DataGridView test;
         private System.Windows.Forms.Button SearchPswd;
         private System.Windows.Forms.Button deletePswd;
+        private System.Windows.Forms.Button modifyPswd;
+        private System.Windows.Forms.Button Exit;
     }
 }
 

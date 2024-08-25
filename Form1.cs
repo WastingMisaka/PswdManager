@@ -14,6 +14,8 @@ namespace PswdManager
     public partial class Form1 : Form
     {
         string selectSQL = "Data Source=pswdManager.db;Version=3;";
+
+        string[] rawText = { "0", "website", "name", "password", "comments" ,"id"};
         public Form1()
         {
             InitializeComponent();
@@ -102,7 +104,6 @@ namespace PswdManager
 
         private void SearchPswd_Click(object sender, EventArgs e)
         {
-            string[] rawText = { "0", "website", "name", "password", "comments" };
             string[] text = { "0", website.Text, name.Text, pswd.Text,comment.Text };
             int cnt = 4;
             for (int i = 1; i <= 4; i++) if (text[i] == "") cnt--;
@@ -195,5 +196,37 @@ namespace PswdManager
                 MessageBox.Show("没有选中的行pup");
             }
         }
+
+        private void modifyPswd_Click(object sender, EventArgs e)
+        {
+            if (test.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("一次只能修改一行");
+            }
+            else
+            {
+                string[] t = new string[15];
+                for(int i =1; i <= 5; i++)
+                {
+                    //w,n,p,c,i
+                    t[i] = Convert.ToString(test.SelectedRows[0].Cells[rawText[i]].Value);
+                }
+                
+                Form2 form2 = new Form2(t[1], t[2], t[3], t[4], t[5]);
+                form2.Closed += new EventHandler(modify_over);
+                form2.Show();
+                
+            }
+        }
+        private void modify_over(Object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
+    
 }
