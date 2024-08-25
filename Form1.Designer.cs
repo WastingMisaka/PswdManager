@@ -29,6 +29,7 @@ namespace PswdManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.name = new System.Windows.Forms.TextBox();
             this.website = new System.Windows.Forms.TextBox();
             this.pswd = new System.Windows.Forms.TextBox();
@@ -130,10 +131,10 @@ namespace PswdManager
             // test
             // 
             this.test.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.test.Location = new System.Drawing.Point(389, 15);
+            this.test.Location = new System.Drawing.Point(234, 12);
             this.test.Name = "test";
             this.test.RowTemplate.Height = 23;
-            this.test.Size = new System.Drawing.Size(358, 267);
+            this.test.Size = new System.Drawing.Size(554, 426);
             this.test.TabIndex = 9;
             this.test.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -155,7 +156,7 @@ namespace PswdManager
             this.deletePswd.TabIndex = 11;
             this.deletePswd.Text = "删除密码";
             this.deletePswd.UseVisualStyleBackColor = true;
-            this.deletePswd.Click += new System.EventHandler(this.deletePswd_Click);
+            this.deletePswd.Click += new System.EventHandler(this.deletePswd_Click_1);
             // 
             // Form1
             // 
@@ -174,8 +175,10 @@ namespace PswdManager
             this.Controls.Add(this.pswd);
             this.Controls.Add(this.website);
             this.Controls.Add(this.name);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "密码管理器";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.test)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

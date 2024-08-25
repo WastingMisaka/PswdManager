@@ -26,7 +26,7 @@ namespace PswdManager
             using (var connection = new SQLiteConnection(selectSQL))
             {
                 connection.Open();
-                var command = new SQLiteCommand("select website,name,password,comments,id from password", connection);
+                var command = new SQLiteCommand("select name,website,password,comments,id from password", connection);
                 var adapter = new SQLiteDataAdapter(command);
                 var table = new DataTable();
                 adapter.Fill(table);
@@ -115,7 +115,7 @@ namespace PswdManager
                 using (var connection = new SQLiteConnection(selectSQL))
                 {
                     connection.Open();
-                    String command = "select website,name,password,comments,id from password where ";
+                    String command = "select name,website,password,comments,id from password where ";
                     for(int i = 1; i <= 4; i++)
                     {
                         if (text[i] == "") continue;
@@ -139,7 +139,7 @@ namespace PswdManager
                                 adapter.SelectCommand.Parameters.AddWithValue("@" + rawText[i], "%" + text[i] + "%");
                             }
                         }
-                        MessageBox.Show(command);
+                        // MessageBox.Show(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
@@ -152,11 +152,28 @@ namespace PswdManager
 
         private void deletePswd_Click(object sender, EventArgs e)
         {
+
+        }
+        private void setTextBlank()
+        {
+            website.Text = "";
+            name.Text = "";
+            pswd.Text = "";
+            comment.Text = "";
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deletePswd_Click_1(object sender, EventArgs e)
+        {
             int cnt = 0;
             // 检查是否有选中的行
             if ((cnt = test.SelectedRows.Count) > 0)
             {
-                for(int i = 0; i < cnt; i++)
+                for (int i = 0; i < cnt; i++)
                 {
                     int id = Convert.ToInt32(test.SelectedRows[i].Cells["Id"].Value);
                     using (SQLiteConnection connection = new SQLiteConnection(selectSQL))
@@ -177,13 +194,6 @@ namespace PswdManager
             {
                 MessageBox.Show("没有选中的行pup");
             }
-        }
-        private void setTextBlank()
-        {
-            website.Text = "";
-            name.Text = "";
-            pswd.Text = "";
-            comment.Text = "";
         }
     }
 }
