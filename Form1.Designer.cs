@@ -44,6 +44,10 @@ namespace PswdManager
             this.deletePswd = new System.Windows.Forms.Button();
             this.modifyPswd = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
+            this.LoadCSV = new System.Windows.Forms.Button();
+            this.openCsvDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.username = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.test)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +55,7 @@ namespace PswdManager
             // 
             this.name.AccessibleDescription = "";
             this.name.AccessibleName = "";
-            this.name.Location = new System.Drawing.Point(49, 12);
+            this.name.Location = new System.Drawing.Point(56, 13);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(100, 21);
             this.name.TabIndex = 0;
@@ -60,7 +64,7 @@ namespace PswdManager
             // 
             // website
             // 
-            this.website.Location = new System.Drawing.Point(49, 39);
+            this.website.Location = new System.Drawing.Point(56, 40);
             this.website.Name = "website";
             this.website.Size = new System.Drawing.Size(100, 21);
             this.website.TabIndex = 1;
@@ -68,7 +72,7 @@ namespace PswdManager
             // 
             // pswd
             // 
-            this.pswd.Location = new System.Drawing.Point(49, 66);
+            this.pswd.Location = new System.Drawing.Point(56, 94);
             this.pswd.Name = "pswd";
             this.pswd.Size = new System.Drawing.Size(100, 21);
             this.pswd.TabIndex = 2;
@@ -76,7 +80,7 @@ namespace PswdManager
             // 
             // AddPswd
             // 
-            this.AddPswd.Location = new System.Drawing.Point(12, 123);
+            this.AddPswd.Location = new System.Drawing.Point(12, 159);
             this.AddPswd.Name = "AddPswd";
             this.AddPswd.Size = new System.Drawing.Size(75, 23);
             this.AddPswd.TabIndex = 3;
@@ -86,7 +90,7 @@ namespace PswdManager
             // 
             // comment
             // 
-            this.comment.Location = new System.Drawing.Point(49, 93);
+            this.comment.Location = new System.Drawing.Point(56, 121);
             this.comment.Name = "comment";
             this.comment.Size = new System.Drawing.Size(100, 21);
             this.comment.TabIndex = 4;
@@ -94,7 +98,7 @@ namespace PswdManager
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 15);
+            this.label1.Location = new System.Drawing.Point(10, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 5;
@@ -104,7 +108,7 @@ namespace PswdManager
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 42);
+            this.label2.Location = new System.Drawing.Point(10, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 6;
@@ -114,7 +118,7 @@ namespace PswdManager
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 69);
+            this.label3.Location = new System.Drawing.Point(10, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 7;
@@ -124,7 +128,7 @@ namespace PswdManager
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 93);
+            this.label4.Location = new System.Drawing.Point(10, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 8;
@@ -142,7 +146,7 @@ namespace PswdManager
             // 
             // SearchPswd
             // 
-            this.SearchPswd.Location = new System.Drawing.Point(106, 123);
+            this.SearchPswd.Location = new System.Drawing.Point(106, 159);
             this.SearchPswd.Name = "SearchPswd";
             this.SearchPswd.Size = new System.Drawing.Size(75, 23);
             this.SearchPswd.TabIndex = 10;
@@ -152,7 +156,7 @@ namespace PswdManager
             // 
             // deletePswd
             // 
-            this.deletePswd.Location = new System.Drawing.Point(12, 164);
+            this.deletePswd.Location = new System.Drawing.Point(12, 198);
             this.deletePswd.Name = "deletePswd";
             this.deletePswd.Size = new System.Drawing.Size(75, 23);
             this.deletePswd.TabIndex = 11;
@@ -162,7 +166,7 @@ namespace PswdManager
             // 
             // modifyPswd
             // 
-            this.modifyPswd.Location = new System.Drawing.Point(106, 164);
+            this.modifyPswd.Location = new System.Drawing.Point(106, 198);
             this.modifyPswd.Name = "modifyPswd";
             this.modifyPswd.Size = new System.Drawing.Size(75, 23);
             this.modifyPswd.TabIndex = 12;
@@ -180,11 +184,45 @@ namespace PswdManager
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
+            // LoadCSV
+            // 
+            this.LoadCSV.Location = new System.Drawing.Point(12, 237);
+            this.LoadCSV.Name = "LoadCSV";
+            this.LoadCSV.Size = new System.Drawing.Size(75, 23);
+            this.LoadCSV.TabIndex = 14;
+            this.LoadCSV.Text = "导入csv";
+            this.LoadCSV.UseVisualStyleBackColor = true;
+            this.LoadCSV.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // openCsvDialog
+            // 
+            this.openCsvDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "用户名";
+            // 
+            // username
+            // 
+            this.username.Location = new System.Drawing.Point(56, 67);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(100, 21);
+            this.username.TabIndex = 16;
+            this.username.TextChanged += new System.EventHandler(this.username_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.LoadCSV);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.modifyPswd);
             this.Controls.Add(this.deletePswd);
@@ -225,6 +263,10 @@ namespace PswdManager
         private System.Windows.Forms.Button deletePswd;
         private System.Windows.Forms.Button modifyPswd;
         private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button LoadCSV;
+        private System.Windows.Forms.OpenFileDialog openCsvDialog;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox username;
     }
 }
 

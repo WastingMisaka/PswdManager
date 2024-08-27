@@ -32,18 +32,20 @@ namespace PswdManager
             this.username1 = new System.Windows.Forms.TextBox();
             this.website1 = new System.Windows.Forms.TextBox();
             this.password1 = new System.Windows.Forms.TextBox();
-            this.comments1 = new System.Windows.Forms.TextBox();
+            this.comment1 = new System.Windows.Forms.TextBox();
             this.username2 = new System.Windows.Forms.Label();
             this.website2 = new System.Windows.Forms.Label();
             this.password2 = new System.Windows.Forms.Label();
             this.comments2 = new System.Windows.Forms.Label();
             this.confirmModify = new System.Windows.Forms.Button();
             this.goBack = new System.Windows.Forms.Button();
+            this.name1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // username1
             // 
-            this.username1.Location = new System.Drawing.Point(60, 9);
+            this.username1.Location = new System.Drawing.Point(58, 63);
             this.username1.Name = "username1";
             this.username1.Size = new System.Drawing.Size(100, 21);
             this.username1.TabIndex = 0;
@@ -58,22 +60,22 @@ namespace PswdManager
             // 
             // password1
             // 
-            this.password1.Location = new System.Drawing.Point(62, 63);
+            this.password1.Location = new System.Drawing.Point(60, 90);
             this.password1.Name = "password1";
             this.password1.Size = new System.Drawing.Size(100, 21);
             this.password1.TabIndex = 2;
             // 
-            // comments1
+            // comment1
             // 
-            this.comments1.Location = new System.Drawing.Point(60, 90);
-            this.comments1.Name = "comments1";
-            this.comments1.Size = new System.Drawing.Size(100, 21);
-            this.comments1.TabIndex = 3;
+            this.comment1.Location = new System.Drawing.Point(58, 117);
+            this.comment1.Name = "comment1";
+            this.comment1.Size = new System.Drawing.Size(100, 21);
+            this.comment1.TabIndex = 3;
             // 
             // username2
             // 
             this.username2.AutoSize = true;
-            this.username2.Location = new System.Drawing.Point(13, 12);
+            this.username2.Location = new System.Drawing.Point(11, 66);
             this.username2.Name = "username2";
             this.username2.Size = new System.Drawing.Size(41, 12);
             this.username2.TabIndex = 4;
@@ -92,7 +94,7 @@ namespace PswdManager
             // password2
             // 
             this.password2.AutoSize = true;
-            this.password2.Location = new System.Drawing.Point(12, 66);
+            this.password2.Location = new System.Drawing.Point(10, 93);
             this.password2.Name = "password2";
             this.password2.Size = new System.Drawing.Size(29, 12);
             this.password2.TabIndex = 6;
@@ -102,7 +104,7 @@ namespace PswdManager
             // comments2
             // 
             this.comments2.AutoSize = true;
-            this.comments2.Location = new System.Drawing.Point(13, 93);
+            this.comments2.Location = new System.Drawing.Point(11, 120);
             this.comments2.Name = "comments2";
             this.comments2.Size = new System.Drawing.Size(29, 12);
             this.comments2.TabIndex = 7;
@@ -110,7 +112,7 @@ namespace PswdManager
             // 
             // confirmModify
             // 
-            this.confirmModify.Location = new System.Drawing.Point(15, 135);
+            this.confirmModify.Location = new System.Drawing.Point(12, 156);
             this.confirmModify.Name = "confirmModify";
             this.confirmModify.Size = new System.Drawing.Size(75, 23);
             this.confirmModify.TabIndex = 8;
@@ -120,25 +122,44 @@ namespace PswdManager
             // 
             // goBack
             // 
-            this.goBack.Location = new System.Drawing.Point(211, 135);
+            this.goBack.Location = new System.Drawing.Point(116, 156);
             this.goBack.Name = "goBack";
             this.goBack.Size = new System.Drawing.Size(75, 23);
             this.goBack.TabIndex = 9;
             this.goBack.Text = "返回";
             this.goBack.UseVisualStyleBackColor = true;
+            this.goBack.Click += new System.EventHandler(this.goBack_Click);
+            // 
+            // name1
+            // 
+            this.name1.Location = new System.Drawing.Point(60, 6);
+            this.name1.Name = "name1";
+            this.name1.Size = new System.Drawing.Size(100, 21);
+            this.name1.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "名字";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.name1);
             this.Controls.Add(this.goBack);
             this.Controls.Add(this.confirmModify);
             this.Controls.Add(this.comments2);
             this.Controls.Add(this.password2);
             this.Controls.Add(this.website2);
             this.Controls.Add(this.username2);
-            this.Controls.Add(this.comments1);
+            this.Controls.Add(this.comment1);
             this.Controls.Add(this.password1);
             this.Controls.Add(this.website1);
             this.Controls.Add(this.username1);
@@ -155,12 +176,14 @@ namespace PswdManager
         private System.Windows.Forms.TextBox username1;
         private System.Windows.Forms.TextBox website1;
         private System.Windows.Forms.TextBox password1;
-        private System.Windows.Forms.TextBox comments1;
+        private System.Windows.Forms.TextBox comment1;
         private System.Windows.Forms.Label username2;
         private System.Windows.Forms.Label password2;
         private System.Windows.Forms.Label comments2;
         private System.Windows.Forms.Label website2;
         private System.Windows.Forms.Button confirmModify;
         private System.Windows.Forms.Button goBack;
+        private System.Windows.Forms.TextBox name1;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -15,7 +15,7 @@ namespace PswdManager
     {
         string selectSQL = "Data Source=pswdManager.db;Version=3;";
 
-        string[] rawText = { "0", "website", "name", "password", "comments" ,"id"};
+        string[] rawText = { "0", "name","website", "username", "password", "comment" ,"id"};
         public Form1()
         {
             InitializeComponent();
@@ -28,12 +28,14 @@ namespace PswdManager
             using (var connection = new SQLiteConnection(selectSQL))
             {
                 connection.Open();
-                var command = new SQLiteCommand("select name,website,password,comments,id from password", connection);
+                var command = new SQLiteCommand("select name,website,username,password,comment,id from password", connection);
                 var adapter = new SQLiteDataAdapter(command);
                 var table = new DataTable();
                 adapter.Fill(table);
                 test.DataSource = table;
+
             }
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -55,23 +57,25 @@ namespace PswdManager
          */
         private void AddPswd_Click(object sender, EventArgs e)
         {
+            
             var websiteText = website.Text;
             var nameText = name.Text;
             var pswdText = pswd.Text;
             var commentText = comment.Text;
-
-            if (websiteText == "" && nameText == ""){
-                MessageBox.Show("网址和名称至少填写一个！");
+            var usernameText = username.Text;
+            if (websiteText == "" && nameText == ""&& commentText == ""){
+                MessageBox.Show("网址、名称、备注至少填写一个！");
             }
             else
             {
                 using (var connection = new SQLiteConnection(selectSQL))
                 {
                     connection.Open();
-                    var command = new SQLiteCommand("insert into password (website,name,password,comments)" +
-                        " values (@websiteText, @nameText, @pswdText, @commentText)", connection);
+                    var command = new SQLiteCommand("insert into password (website,name,username,password,comment)" +
+                        " values (@websiteText, @nameText,@usernameText, @pswdText, @commentText)", connection);
                     command.Parameters.AddWithValue("@websiteText", websiteText);
                     command.Parameters.AddWithValue("@nameText", nameText);
+                    command.Parameters.AddWithValue("@usernameText", usernameText);
                     command.Parameters.AddWithValue("@pswdText", pswdText);
                     command.Parameters.AddWithValue("commentText", commentText);
                     command.ExecuteNonQuery();
@@ -104,9 +108,9 @@ namespace PswdManager
 
         private void SearchPswd_Click(object sender, EventArgs e)
         {
-            string[] text = { "0", website.Text, name.Text, pswd.Text,comment.Text };
-            int cnt = 4;
-            for (int i = 1; i <= 4; i++) if (text[i] == "") cnt--;
+            string[] text = { "0",  name.Text, website.Text,username.Text, pswd.Text,comment.Text };
+            int cnt = 5;
+            for (int i = 1; i <= 5; i++) if (text[i] == "") cnt--;
             if (cnt==0)
             {
                 LoadData();
@@ -116,8 +120,8 @@ namespace PswdManager
                 using (var connection = new SQLiteConnection(selectSQL))
                 {
                     connection.Open();
-                    String command = "select name,website,password,comments,id from password where ";
-                    for(int i = 1; i <= 4; i++)
+                    String command = "select name,website,username,password,comment,id from password where ";
+                    for(int i = 1; i <= 5; i++)
                     {
                         if (text[i] == "") continue;
                         else
@@ -133,14 +137,13 @@ namespace PswdManager
                     
                     using(SQLiteDataAdapter adapter = new SQLiteDataAdapter(command, connection))
                     {
-                        for(int i = 1; i <= 4; i++)
+                        for(int i = 1; i <= 5; i++)
                         {
                             if (text[i] != "")
                             {
                                 adapter.SelectCommand.Parameters.AddWithValue("@" + rawText[i], "%" + text[i] + "%");
                             }
                         }
-                        // MessageBox.Show(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
@@ -161,6 +164,7 @@ namespace PswdManager
             name.Text = "";
             pswd.Text = "";
             comment.Text = "";
+            username.Text = "";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -206,13 +210,13 @@ namespace PswdManager
             else
             {
                 string[] t = new string[15];
-                for(int i =1; i <= 5; i++)
+                for(int i =1; i <= 6; i++)
                 {
-                    //w,n,p,c,i
+                    //w,n,u,p,c,i
                     t[i] = Convert.ToString(test.SelectedRows[0].Cells[rawText[i]].Value);
                 }
                 
-                Form2 form2 = new Form2(t[1], t[2], t[3], t[4], t[5]);
+                Form2 form2 = new Form2(t[1], t[2], t[3], t[4], t[5],t[6]);
                 form2.Closed += new EventHandler(modify_over);
                 form2.Show();
                 
@@ -226,6 +230,35 @@ namespace PswdManager
         private void Exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openCsvDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            openCsvDialog.Title = "选择CSV文件";
+            openCsvDialog.ShowDialog();
+            string path = openCsvDialog.FileName;
+            if (path != "")
+            {
+                Form form3 = new Form3(path);
+                form3.Closed += new EventHandler(modify_over);
+                form3.Show();
+            }
+        }
+
+        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void username_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     
